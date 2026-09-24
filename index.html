@@ -3,544 +3,1707 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erick Ibañez - Desarrollo de Software</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <title>Erick Ibáñez | Consultoría y Desarrollo de Software</title>
+    <meta name="description" content="Desarrollo de software a la medida, modernización de sistemas y aplicaciones móviles con más de 6 años de experiencia profesional.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
     <style>
+        :root {
+            --bg-primary: #0a0f1d;
+            --bg-secondary: #0f172a;
+            --bg-surface: #131c31;
+            --bg-card: #141f36;
+            --bg-card-hover: #192744;
+            --border-color: #1e2e4a;
+            --border-hover: #2e446d;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-subtle: rgba(37, 99, 235, 0.12);
+            --accent-border: rgba(37, 99, 235, 0.35);
+            --tag-bg: #1e293b;
+            --tag-text: #cbd5e1;
+            --header-bg: rgba(10, 15, 29, 0.94);
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.15);
+            --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        body.light-theme {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --bg-surface: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --border-color: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --accent: #1d4ed8;
+            --accent-hover: #1e40af;
+            --accent-subtle: rgba(29, 78, 216, 0.08);
+            --accent-border: rgba(29, 78, 216, 0.25);
+            --tag-bg: #f1f5f9;
+            --tag-text: #334155;
+            --header-bg: rgba(248, 250, 252, 0.94);
+            --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.06);
+            --shadow-hover: 0 8px 20px rgba(15, 23, 42, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --accent-color-vibrant: #a3e635;
-            --text-light: #f8fafc;
-            --text-dark: #1e293b;
-            --bg-light: #ffffff;
-            --bg-dark: #0f172a;
-            --card-light: #f8fafc;
-            --card-dark: #1e293b;
-            --border-light: #e2e8f0;
-            --border-dark: #374151;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            transition: all 0.3s ease;
-        }
-
-        body.light-theme {
-            background: var(--bg-light);
-            color: var(--text-dark);
-        }
-
-        body.dark-theme {
-            background: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 0;
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .light-theme header {
-            background: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .dark-theme header {
-            background: rgba(15, 23, 42, 0.9);
-            border-bottom: 1px solid var(--border-dark);
-        }
-        
-        header.scrolled {
-            background: linear-gradient(to right, rgba(25, 63, 235, 0.9), rgba(6, 23, 42, 0.9));
-            border-bottom: 1px solid var(--border-dark);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .light-theme .nav-links a {
-            color: var(--text-dark);
-        }
-
-        .dark-theme .nav-links a {
-            color: var(--text-light);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .light-theme .theme-toggle {
-            color: var(--text-dark);
-        }
-
-        .dark-theme .theme-toggle {
-            color: var(--text-light);
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 0 4rem;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--accent-color-vibrant), #84cc16);
-            color: var(--text-dark);
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(163, 230, 53, 0.3);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 3rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            padding: 2rem;
-            border-radius: 1rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .light-theme .service-card {
-            background: var(--card-light);
-            border: 1px solid var(--border-light);
-        }
-
-        .dark-theme .service-card {
-            background: var(--card-dark);
-            border: 1px solid var(--border-dark);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* About Section */
-        .about {
-            padding: 4rem 0;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-image {
-            text-align: center;
-        }
-
-        .profile-placeholder {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
-
-        .profile-placeholder i {
-            font-size: 6rem;
-            color: white;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .skill-tag {
-            background: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 4rem 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .contact-card {
-            padding: 2rem;
-            border-radius: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .light-theme .contact-card {
-            background: var(--card-light);
-            border: 1px solid var(--border-light);
-        }
-
-        .dark-theme .contact-card {
-            background: var(--card-dark);
-            border: 1px solid var(--border-dark);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .contact-card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-card a {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 500;
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid;
-        }
-
-        .light-theme footer {
-            border-color: var(--border-light);
-            background: var(--card-light);
-        }
-
-        .dark-theme footer {
-            border-color: var(--border-dark);
-            background: var(--card-dark);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-        }
-
-        /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
 
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--header-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: border-color 0.25s ease, background-color 0.25s ease;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            position: relative;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .brand-logo {
+            width: 34px;
+            height: 34px;
+            background: var(--accent);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm);
+            letter-spacing: -0.03em;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .brand-title {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        /* Language Toggle (ES / EN) */
+        .lang-switch {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            font-family: inherit;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: calc(var(--radius-sm) - 1px);
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .lang-btn:not(.active):hover {
+            color: var(--text-primary);
+        }
+
+        /* Theme Toggle */
+        .theme-btn {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.45rem 0.65rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .theme-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+        }
+
+        /* Mobile Hamburger Button */
+        .mobile-toggle {
+            display: none;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.45rem 0.65rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.4rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: inherit;
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-surface);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-sm {
+            padding: 0.45rem 0.85rem;
+            font-size: 0.82rem;
+        }
+
+        /* Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.75rem;
+            background: var(--accent-subtle);
+            border: 1px solid var(--accent-border);
+            border-radius: var(--radius-sm);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.25rem;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .location-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+        }
+
+        .location-pill i {
+            color: var(--accent);
+        }
+
+        /* Section Layout */
         section {
-            scroll-margin-top: 80px;
+            padding: 5.5rem 0;
+            scroll-margin-top: 70px;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        .section-header {
+            max-width: 680px;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header.text-center {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            line-height: 1.25;
+            margin-bottom: 0.85rem;
+        }
+
+        .section-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8.5rem 0 5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 1.18;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title .highlight {
+            color: var(--accent);
+        }
+
+        .hero-lead {
+            font-size: 1.12rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 2rem;
+            max-width: 580px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-value {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+            margin-top: 0.25rem;
+        }
+
+        .hero-card-preview {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1.25rem;
+        }
+
+        .preview-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .preview-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        .preview-item {
+            display: flex;
+            gap: 0.85rem;
+            align-items: flex-start;
+        }
+
+        .preview-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-subtle);
+            color: var(--accent);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .preview-item-text strong {
+            display: block;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+
+        .preview-item-text p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        /* Services Grid */
+        .services {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 2.25rem 2rem;
+            transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .service-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon-box {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-subtle);
+            border: 1px solid var(--accent-border);
+            color: var(--accent);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Experience Section */
+        .experience {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .experience-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .exp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 2.25rem;
+            box-shadow: var(--shadow-subtle);
+            transition: border-color 0.2s ease;
+        }
+
+        .exp-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .exp-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .exp-role-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .exp-company {
+            display: inline-block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-top: 0.15rem;
+        }
+
+        .exp-description {
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .exp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .exp-tag {
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 0.25rem 0.6rem;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 3.5rem;
+            align-items: flex-start;
+        }
+
+        .about-photo-wrapper {
+            position: relative;
+        }
+
+        .about-photo-frame {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--bg-card);
+            box-shadow: var(--shadow-card);
+        }
+
+        .about-photo {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            object-position: 50% 15%;
+            display: block;
+        }
+
+        .photo-caption {
+            padding: 1rem 1.25rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-surface);
+        }
+
+        .photo-caption strong {
+            display: block;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+        }
+
+        .photo-caption span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            font-size: 1.02rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .guarantees-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.85rem;
+            margin-top: 1.75rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .guarantee-item {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .guarantee-item i {
+            color: var(--accent);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5.5rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .contact-card-top {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-card .contact-handle {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--accent);
+            word-break: break-all;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .contact-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .contact-card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Quick Inquiry Box */
+        .inquiry-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .inquiry-header {
+            margin-bottom: 1.75rem;
+        }
+
+        .inquiry-header h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .inquiry-header p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        .inquiry-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .form-group-full {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 0.9rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-primary);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Toast feedback */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent);
+            color: #ffffff;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-hover);
+            z-index: 2000;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.25s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            .hero-card-preview {
+                display: none;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .about-photo {
+                height: 320px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .inquiry-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group-full {
+                grid-column: span 1;
             }
         }
 
-        .animate-on-scroll {
-            animation: fadeInUp 0.8s ease-out;
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-surface);
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: column;
+                padding: 1.25rem 1.5rem;
+                gap: 1rem;
+                box-shadow: var(--shadow-card);
+            }
+
+            .nav-menu.mobile-open {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.15rem;
+            }
+
+            .hero-metrics {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            .guarantees-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body class="dark-theme">
+    <!-- Header -->
     <header>
         <nav class="container">
-            <div class="logo">
-                <i class="fas fa-code"></i> Erick Ibáñez
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Inicio</a></li>
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#about">Sobre mí</a></li>
-                <li><a href="#contact">Contacto</a></li>
+            <a href="#home" class="brand">
+                <div class="brand-logo">EI</div>
+                <div class="brand-text">
+                    <span class="brand-name">Erick Ibáñez</span>
+                    <span class="brand-title" data-i18n="brand_subtitle">Software & Consultoría</span>
+                </div>
+            </a>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#services" class="nav-link" data-i18n="nav_services" onclick="closeMobileMenu()">Servicios</a></li>
+                <li><a href="#experience" class="nav-link" data-i18n="nav_experience" onclick="closeMobileMenu()">Trayectoria</a></li>
+                <li><a href="#about" class="nav-link" data-i18n="nav_about" onclick="closeMobileMenu()">Sobre mí</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="nav_contact" onclick="closeMobileMenu()">Contacto</a></li>
             </ul>
-            <button class="theme-toggle" onclick="toggleTheme()">
-                <i class="fas fa-sun" id="theme-icon"></i>
-            </button>
+
+            <div class="nav-actions">
+                <!-- Language Toggle -->
+                <div class="lang-switch" role="group" aria-label="Selector de idioma">
+                    <button class="lang-btn active" id="btn-es" onclick="setLanguage('es')">ES</button>
+                    <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button class="theme-btn" onclick="toggleTheme()" aria-label="Cambiar tema">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación">
+                    <i class="fas fa-bars" id="menu-icon"></i>
+                </button>
+            </div>
         </nav>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="container">
-                <div class="hero-content animate-on-scroll">
-                    <h1>Desarrollo de Software a la medida</h1>
-                    <p>Desarrollamos el software que tu negocio necesita para crecer. Creamos soluciones a medida para que optimices tus procesos, atraigas más clientes y escales tu empresa con tecnología de punta.</p>
-                    <a href="#contact" class="cta-button">
-                        <i class="fas fa-rocket"></i>
-                        Inicia tu proyecto con una consulta gratuita
-                    </a>
+                <div class="hero-grid">
+                    <div class="hero-left">
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            <span data-i18n="hero_status">Disponible para consultoría y nuevos proyectos</span>
+                        </div>
+
+                        <div class="location-pill">
+                            <i class="fas fa-location-dot"></i>
+                            <span id="location-text" data-i18n="hero_location">Monclova, Coahuila, México • Colaboración remota e internacional</span>
+                        </div>
+
+                        <h1 class="hero-title" data-i18n="hero_title">
+                            Desarrollo software a la medida para <span class="highlight">hacer más eficiente</span> tu negocio.
+                        </h1>
+
+                        <p class="hero-lead" data-i18n="hero_lead">
+                            Soy Erick Ibáñez, especialista con más de 6 años de experiencia creando sistemas empresariales, aplicaciones móviles y soluciones de automatización. Te ayudo a sustituir tareas manuales, optimizar costos y contar con tecnología confiable con trato directo y sin intermediarios.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a href="#contact" class="btn btn-primary" data-i18n="hero_cta_primary">
+                                <i class="fas fa-arrow-right"></i> Iniciar conversación
+                            </a>
+                            <a href="#experience" class="btn btn-outline" data-i18n="hero_cta_secondary">
+                                <i class="fas fa-briefcase"></i> Conocer mi trayectoria
+                            </a>
+                        </div>
+
+                        <div class="hero-metrics">
+                            <div class="metric-item">
+                                <span class="metric-value">+6 Años</span>
+                                <span class="metric-label" data-i18n="metric_1">Experiencia profesional comprobada</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value">Fintech & Industria</span>
+                                <span class="metric-label" data-i18n="metric_2">Sistemas seguros y de misión crítica</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value">100% Directo</span>
+                                <span class="metric-label" data-i18n="metric_3">Atención personal sin sobrecostos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-right">
+                        <div class="hero-card-preview">
+                            <div class="preview-header">
+                                <span class="preview-title" data-i18n="preview_title">Lo que aporto a tu empresa</span>
+                                <i class="fas fa-shield-halved" style="color: var(--accent);"></i>
+                            </div>
+                            <div class="preview-list">
+                                <div class="preview-item">
+                                    <div class="preview-icon"><i class="fas fa-check"></i></div>
+                                    <div class="preview-item-text">
+                                        <strong data-i18n="preview_item1_title">Enfoque en retorno de inversión</strong>
+                                        <p data-i18n="preview_item1_desc">Sistemas orientados a ahorrar horas de trabajo, prevenir errores humanos y aumentar ventas.</p>
+                                    </div>
+                                </div>
+                                <div class="preview-item">
+                                    <div class="preview-icon"><i class="fas fa-check"></i></div>
+                                    <div class="preview-item-text">
+                                        <strong data-i18n="preview_item2_title">Estándares de seguridad bancaria</strong>
+                                        <p data-i18n="preview_item2_desc">Experiencia probada en sector financiero y logística con rigurosos controles de datos.</p>
+                                    </div>
+                                </div>
+                                <div class="preview-item">
+                                    <div class="preview-icon"><i class="fas fa-check"></i></div>
+                                    <div class="preview-item-text">
+                                        <strong data-i18n="preview_item3_title">Comunicación clara y honesta</strong>
+                                        <p data-i18n="preview_item3_desc">Sin jerga técnica confusa: reportes claros de avance, costos transparentes y entregables puntuales.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Services Section -->
         <section id="services" class="services">
             <div class="container">
-                <h2 class="section-title">Servicios profesionales</h2>
+                <div class="section-header">
+                    <span class="section-tag" data-i18n="services_tag">Soluciones</span>
+                    <h2 class="section-title" data-i18n="services_title">Servicios diseñados para generar valor real</h2>
+                    <p class="section-description" data-i18n="services_subtitle">
+                        Pongo mi experiencia técnica al servicio de los objetivos de tu negocio. Desarrollo herramientas que resuelven cuellos de botella operativos y te permiten crecer con tranquilidad.
+                    </p>
+                </div>
+
                 <div class="services-grid">
-                    <div class="service-card animate-on-scroll">
-                        <div class="service-icon">
-                            <i class="fas fa-cogs"></i>
+                    <div class="service-card">
+                        <div class="service-icon-box">
+                            <i class="fas fa-cubes"></i>
                         </div>
-                        <h3>Software a la Medida</h3>
-                        <p>¿Necesitas un sistema de ventas, una plataforma de reservaciones o software para automatizar procesos? Creamos herramientas empresariales robustas que simplifican tus operaciones y te hacen más eficiente.</p>
+                        <h3 data-i18n="srv1_title">Software Empresarial a la Medida</h3>
+                        <p data-i18n="srv1_desc">
+                            Desarrollo sistemas diseñados con precisión para tus operaciones internas: paneles de control, gestión de pedidos y plataformas que unifican a tu equipo en un solo lugar confiable.
+                        </p>
                     </div>
-                    <div class="service-card animate-on-scroll">
-                        <div class="service-icon">
-                            <i class="fas fa-desktop"></i>
+
+                    <div class="service-card">
+                        <div class="service-icon-box">
+                            <i class="fas fa-mobile-screen-button"></i>
                         </div>
-                        <h3>Diseño Web y Aplicaciones Móviles</h3>
-                        <p>Diseñamos sitios web profesionales y aplicaciones móviles con un diseño profesional y una experiencia de usuario fluida, asegurando que tu marca se vea y funcione a la perfección en cualquier dispositivo.</p>
+                        <h3 data-i18n="srv2_title">Aplicaciones Web y Móviles</h3>
+                        <p data-i18n="srv2_desc">
+                            Creo aplicaciones intuitivas y estables para teléfonos y navegadores, pensadas para que tus clientes o personal de campo operen de manera rápida y sin complicaciones técnicas.
+                        </p>
                     </div>
-                    <div class="service-card animate-on-scroll">
-                        <div class="service-icon">
-                            <i class="fas fa-rocket"></i>
+
+                    <div class="service-card">
+                        <div class="service-icon-box">
+                            <i class="fas fa-boxes-packing"></i>
                         </div>
-                        <h3>Modernización de Sistemas</h3>
-                        <p>¿Tu software actual se quedó obsoleto? Modernizamos y optimizamos tus sistemas existentes para que sean más eficientes, rápidos y seguros. No pierdas tu inversión, hazla evolucionar.</p>
+                        <h3 data-i18n="srv3_title">Automatización y Control Operativo</h3>
+                        <p data-i18n="srv3_desc">
+                            Sustituyo tareas manuales y archivos de Excel propensos a errores con soluciones automáticas para control de inventarios, almacenes y puntos de venta que optimizan tus tiempos.
+                        </p>
                     </div>
-                    <div class="service-card animate-on-scroll">
-                        <div class="service-icon">
-                            <i class="fas fa-shield-alt"></i>
+
+                    <div class="service-card">
+                        <div class="service-icon-box">
+                            <i class="fas fa-arrows-rotate"></i>
                         </div>
-                        <h3>Soporte y Mantenimiento</h3>
-                        <p>Tu software no termina de crearse. Te ofrecemos un socio tecnológico de confianza para mantener tus sistemas actualizados, funcionando sin errores y listos para escalar. Nos encargamos de que tu tecnología siempre sea una ventaja competitiva.</p>
+                        <h3 data-i18n="srv4_title">Modernización y Soporte Continuo</h3>
+                        <p data-i18n="srv4_desc">
+                            Si tu software actual se volvió lento u obsoleto, lo modernizo para que vuelva a ser rápido, seguro y fácil de mantener. Cuentas con un socio tecnológico de largo plazo.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Experience & Track Record Section (From CV) -->
+        <section id="experience" class="experience">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag" data-i18n="exp_tag">Trayectoria</span>
+                    <h2 class="section-title" data-i18n="exp_title">Experiencia profesional comprobada</h2>
+                    <p class="section-description" data-i18n="exp_subtitle">
+                        He diseñado e implementado soluciones en entornos de alta exigencia: desde grandes corporativos industriales y el sector financiero, hasta consultoría directa para PyMES en crecimiento.
+                    </p>
+                </div>
+
+                <div class="experience-stack">
+                    <!-- Exp Item 1: Grupo Industrial Monclova -->
+                    <div class="exp-card">
+                        <div class="exp-top">
+                            <div>
+                                <h3 class="exp-role-title" data-i18n="exp1_role">Líder Técnico & Desarrollador</h3>
+                                <span class="exp-company">Grupo Industrial Monclova</span>
+                            </div>
+                        </div>
+                        <p class="exp-description" data-i18n="exp1_desc">
+                            Liderazgo técnico en la transformación digital de procesos logísticos y comerciales para uno de los grupos industriales más relevantes de la región. Diseñé y coordiné la migración de operaciones manuales tradicionales hacia plataformas centralizadas y modernas, optimizando el flujo de datos entre áreas y garantizando alta disponibilidad en servidores y la nube.
+                        </p>
+                        <div class="exp-tags">
+                            <span class="exp-tag" data-i18n="tag_dt">Transformación Digital</span>
+                            <span class="exp-tag" data-i18n="tag_logistics">Logística y Almacén</span>
+                            <span class="exp-tag" data-i18n="tag_arch">Arquitectura de Sistemas</span>
+                            <span class="exp-tag" data-i18n="tag_lead">Liderazgo de Equipos</span>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 2: Broxel -->
+                    <div class="exp-card">
+                        <div class="exp-top">
+                            <div>
+                                <h3 class="exp-role-title" data-i18n="exp2_role">Responsable de Desarrollo Móvil</h3>
+                                <span class="exp-company">Broxel (Fintech)</span>
+                            </div>
+                        </div>
+                        <p class="exp-description" data-i18n="exp2_desc">
+                            Gestión y desarrollo integral de aplicaciones financieras móviles utilizadas diariamente por miles de usuarios. Implementación bajo los más estrictos estándares de seguridad bancaria, cifrado y confiabilidad transaccional. Coordinación de ciclos de calidad, integración de servicios en tiempo real y optimización de bases de datos.
+                        </p>
+                        <div class="exp-tags">
+                            <span class="exp-tag" data-i18n="tag_fintech">Sector Fintech & Bancario</span>
+                            <span class="exp-tag" data-i18n="tag_security">Seguridad Transaccional</span>
+                            <span class="exp-tag" data-i18n="tag_mobile">Desarrollo Móvil de Alta Escala</span>
+                            <span class="exp-tag" data-i18n="tag_quality">Control de Calidad y Monitoreo</span>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 3: Consultoría PyMES -->
+                    <div class="exp-card">
+                        <div class="exp-top">
+                            <div>
+                                <h3 class="exp-role-title" data-i18n="exp3_role">Consultor Independiente de Software</h3>
+                                <span class="exp-company" data-i18n="exp3_company">Proyectos Independientes & Empresas Comerciales</span>
+                            </div>
+                        </div>
+                        <p class="exp-description" data-i18n="exp3_desc">
+                            Diseño e implementación de soluciones a la medida orientadas a resolver problemas operativos específicos: creación de una suite móvil para gestión de inventarios con escaneo digital y operación sin conexión que redujo drásticamente tiempos de conteo y eliminó errores de captura manual; e implementación de sistemas de Punto de Venta (POS) y comercio digital que impulsaron las ventas y el orden administrativo de clientes comerciales.
+                        </p>
+                        <div class="exp-tags">
+                            <span class="exp-tag" data-i18n="tag_pos">Puntos de Venta (POS)</span>
+                            <span class="exp-tag" data-i18n="tag_inv">Control de Inventarios</span>
+                            <span class="exp-tag" data-i18n="tag_ecom">Comercio Digital</span>
+                            <span class="exp-tag" data-i18n="tag_roi">Ahorro de Costos Operativos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
-                <div class="about-content">
-                    <div class="about-image">
-                        <img src="pp.jpg" class="profile-placeholder"/>
+                <div class="about-grid">
+                    <div class="about-photo-wrapper">
+                        <div class="about-photo-frame">
+                            <img src="pp.png" alt="Erick Ibáñez - Consultor y Desarrollador de Software" class="about-photo">
+                            <div class="photo-caption">
+                                <strong>Erick Daniel Vázquez Ibáñez</strong>
+                                <span data-i18n="about_caption">Ingeniero en Informática • Consultor</span>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="about-text">
-                        <h2>Sobre mí</h2>
-                        <p>Soy un Ingeniero en Informática con más de 5 años de experiencia en el desarrollo de software. Mi trayectoria me ha permitido colaborar con diversas industrias, desde la manufactura hasta el sector financiero, creando soluciones a la medida que optimizan procesos y resuelven desafíos de negocio.</p>
-                        <p>Como profesional, me especializo en el desarrollo web, móvil y de escritorio, utilizando tecnologías como C#, PHP y Laravel. Mi compromiso se basa en la responsabilidad, la confidencialidad y la claridad para garantizar que tu proyecto sea un éxito. Mi objetivo es ser un socio de confianza que te ayude a transformar tus ideas en herramientas funcionales.</p>
-                        <div class="skills">
-                            <span class="skill-tag">C#</span>
-                            <span class="skill-tag">PHP</span>
-                            <span class="skill-tag">Laravel</span>
-                            <span class="skill-tag">Blazor</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">Git/GitHub</span>
-                            <span class="skill-tag">Azure</span>
-                            <span class="skill-tag">DevOps</span>
-                            <span class="skill-tag">HTML/CSS/JS</span>
+                        <span class="section-tag" data-i18n="about_tag">Sobre mí</span>
+                        <h2 data-i18n="about_title">Un aliado tecnológico comprometido con tus resultados</h2>
+                        
+                        <p data-i18n="about_p1">
+                            Soy Erick Ibáñez, Ingeniero en Informática con más de 6 años de experiencia diseñando y liderando soluciones de software en industrias exigentes como manufactura, logística y servicios financieros.
+                        </p>
+
+                        <p data-i18n="about_p2">
+                            Mi filosofía de trabajo es simple: el software solo es valioso si resuelve un problema real de tu negocio, ahorra tiempo a tu equipo o te ayuda a generar más ingresos. Me enfoco en entender a fondo tu operación antes de escribir una sola línea de código, ofreciéndote un trato directo, sin intermediarios y con comunicación clara en todo momento.
+                        </p>
+
+                        <p data-i18n="about_p3">
+                            Ya sea que necesites automatizar un proceso manual, construir una aplicación móvil para tus clientes o modernizar una plataforma existente, pongo a tu disposición mi experiencia corporativa con la agilidad y atención personalizada de un consultor dedicado.
+                        </p>
+
+                        <div class="guarantees-grid">
+                            <div class="guarantee-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="g1">Trato directo con el especialista</span>
+                            </div>
+                            <div class="guarantee-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="g2">Comunicación clara sin tecnicismos</span>
+                            </div>
+                            <div class="guarantee-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="g3">Soluciones escalables y seguras</span>
+                            </div>
+                            <div class="guarantee-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="g4">Confidencialidad y seriedad</span>
+                            </div>
+                            <div class="guarantee-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="g5">Enfoque en ahorro de tiempo y costos</span>
+                            </div>
+                            <div class="guarantee-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="g6">Acompañamiento y soporte continuo</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact" class="contact">
             <div class="container">
-                <h2 class="section-title">Construyamos algo increíble</h2>
+                <div class="section-header text-center">
+                    <span class="section-tag" data-i18n="contact_tag">Contacto directo</span>
+                    <h2 class="section-title" data-i18n="contact_title">Hablemos sobre tu próximo proyecto</h2>
+                    <p class="section-description" data-i18n="contact_subtitle">
+                        Cuéntame sobre las metas o dificultades operativas de tu empresa. Te responderé personalmente para analizar cómo podemos solucionarlo.
+                    </p>
+                </div>
+
                 <div class="contact-grid">
-                    <div class="contact-card animate-on-scroll">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                    <!-- Email Card -->
+                    <div class="contact-card">
+                        <div class="contact-card-top">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <h3 data-i18n="contact_email_title">Correo Electrónico</h3>
+                            <a href="mailto:erickibanezdev@gmail.com" class="contact-handle">erickibanezdev@gmail.com</a>
+                            <p data-i18n="contact_email_desc">Canal principal para consultas y solicitudes de proyectos. Respuesta en menos de 24 horas.</p>
                         </div>
-                        <h3>Email</h3>
-                        <a href="mailto:erickibanezdev@gmail.com">erickibanezdev@gmail.com</a>
-                        <p>Envía tus ideas y dudas, te responderé en menos de 24 horas.</p>
-                    </div>
-                    <div class="contact-card animate-on-scroll">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
+                        <div class="contact-card-actions">
+                            <a href="mailto:erickibanezdev@gmail.com" class="btn btn-primary btn-sm" data-i18n="btn_send_mail">
+                                <i class="fas fa-paper-plane"></i> Enviar correo
+                            </a>
+                            <button class="btn btn-outline btn-sm" onclick="copyEmail()" data-i18n="btn_copy_mail">
+                                <i class="fas fa-copy"></i> Copiar
+                            </button>
                         </div>
-                        <h3>WhatsApp</h3>
-                        <a href="https://wa.me/5218662535356">+52 (866)2535356</a>
-                        <p>Para preguntas rápidas o si prefieres una comunicación más directa.</p>
                     </div>
-                    <div class="contact-card animate-on-scroll">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
+
+                    <!-- LinkedIn Card -->
+                    <div class="contact-card">
+                        <div class="contact-card-top">
+                            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                            <h3 data-i18n="contact_linkedin_title">LinkedIn</h3>
+                            <a href="https://www.linkedin.com/in/erickvazquezi/" target="_blank" rel="noopener noreferrer" class="contact-handle">in/erickvazquezi</a>
+                            <p data-i18n="contact_linkedin_desc">Conéctate conmigo profesionalmente y revisa mi trayectoria y experiencia corporativa.</p>
                         </div>
-                        <h3>GitHub</h3>
-                        <a href="https://github.com/erickvazquezi" target="_blank">@erickvazquezi</a>
-                        <p>Explora mi portafolio de código y proyectos públicos.</p>
-                    </div>
-                    <div class="contact-card animate-on-scroll">
-                        <div class="contact-icon">
-                            <i class="fab fa-twitter"></i>
+                        <div class="contact-card-actions">
+                            <a href="https://www.linkedin.com/in/erickvazquezi/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" data-i18n="btn_view_linkedin">
+                                <i class="fas fa-arrow-up-right-from-square"></i> Ver perfil
+                            </a>
                         </div>
-                        <h3>Twitter</h3>
-                        <a href="https://twitter.com/erickibanezdev" target="_blank">@erickibanezdev</a>
-                        <p>Sígueme para ver mis reflexiones sobre tecnología y desarrollo.</p>
                     </div>
+
+                    <!-- GitHub Card -->
+                    <div class="contact-card">
+                        <div class="contact-card-top">
+                            <div class="contact-icon"><i class="fab fa-github"></i></div>
+                            <h3 data-i18n="contact_github_title">GitHub</h3>
+                            <a href="https://github.com/erickibanezdev" target="_blank" rel="noopener noreferrer" class="contact-handle">github.com/erickibanezdev</a>
+                            <p data-i18n="contact_github_desc">Explora proyectos públicos, componentes y código representativo de mi trabajo.</p>
+                        </div>
+                        <div class="contact-card-actions">
+                            <a href="https://github.com/erickibanezdev" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" data-i18n="btn_view_github">
+                                <i class="fas fa-code-branch"></i> Ver repositorio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Inquiry Box -->
+                <div class="inquiry-box">
+                    <div class="inquiry-header">
+                        <h3 data-i18n="inquiry_title">¿Tienes un proyecto en mente? Envíame un mensaje</h3>
+                        <p data-i18n="inquiry_subtitle">Completa este breve formulario y abrirá tu cliente de correo listo con todos los datos organizados.</p>
+                    </div>
+                    <form class="inquiry-form" onsubmit="handleInquiry(event)">
+                        <div class="form-group">
+                            <label class="form-label" for="inq-name" data-i18n="form_name">Tu Nombre</label>
+                            <input type="text" id="inq-name" class="form-control" placeholder="Ej. Carlos Martínez" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="inq-company" data-i18n="form_company">Empresa o Negocio (opcional)</label>
+                            <input type="text" id="inq-company" class="form-control" placeholder="Ej. Distribuidora del Norte">
+                        </div>
+                        <div class="form-group-full">
+                            <label class="form-label" for="inq-message" data-i18n="form_message">¿En qué consiste tu necesidad o proyecto?</label>
+                            <textarea id="inq-message" class="form-control" placeholder="Ej. Necesitamos un sistema para digitalizar el control de almacén y pedidos de nuestros clientes..." required></textarea>
+                        </div>
+                        <div class="form-group-full">
+                            <button type="submit" class="btn btn-primary" data-i18n="btn_submit_inquiry">
+                                <i class="fas fa-paper-plane"></i> Redactar mensaje de consulta
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Erick Ibáñez. Desarrollando experiencias digitales, un proyecto a la vez.</p>
+            <div class="footer-content">
+                <p class="footer-text">
+                    &copy; <span id="current-year">2026</span> Erick Ibáñez. <span data-i18n="footer_copy">Consultoría y desarrollo de software profesional.</span>
+                </p>
+                <ul class="footer-links">
+                    <li><a href="#services" data-i18n="nav_services">Servicios</a></li>
+                    <li><a href="#experience" data-i18n="nav_experience">Trayectoria</a></li>
+                    <li><a href="#about" data-i18n="nav_about">Sobre mí</a></li>
+                    <li><a href="https://www.linkedin.com/in/erickvazquezi/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Correo copiado al portapapeles</div>
+
     <script>
+        // Set dynamic current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Translation Dictionary
+        const translations = {
+            es: {
+                brand_subtitle: "Software & Consultoría",
+                nav_services: "Servicios",
+                nav_experience: "Trayectoria",
+                nav_about: "Sobre mí",
+                nav_contact: "Contacto",
+                hero_status: "Disponible para consultoría y nuevos proyectos",
+                hero_location: "Monclova, Coahuila, México • Colaboración remota e internacional",
+                hero_title: 'Desarrollo software a la medida para <span class="highlight">hacer más eficiente</span> tu negocio.',
+                hero_lead: "Soy Erick Ibáñez, especialista con más de 6 años de experiencia creando sistemas empresariales, aplicaciones móviles y soluciones de automatización. Te ayudo a sustituir tareas manuales, optimizar costos y contar con tecnología confiable con trato directo y sin intermediarios.",
+                hero_cta_primary: '<i class="fas fa-arrow-right"></i> Iniciar conversación',
+                hero_cta_secondary: '<i class="fas fa-briefcase"></i> Conocer mi trayectoria',
+                metric_1: "Experiencia profesional comprobada",
+                metric_2: "Sistemas seguros y de misión crítica",
+                metric_3: "Atención personal sin sobrecostos",
+                preview_title: "Lo que aporto a tu empresa",
+                preview_item1_title: "Enfoque en retorno de inversión",
+                preview_item1_desc: "Sistemas orientados a ahorrar horas de trabajo, prevenir errores humanos y aumentar ventas.",
+                preview_item2_title: "Estándares de seguridad bancaria",
+                preview_item2_desc: "Experiencia probada en sector financiero y logística con rigurosos controles de datos.",
+                preview_item3_title: "Comunicación clara y honesta",
+                preview_item3_desc: "Sin jerga técnica confusa: reportes claros de avance, costos transparentes y entregables puntuales.",
+                services_tag: "Soluciones",
+                services_title: "Servicios diseñados para generar valor real",
+                services_subtitle: "Pongo mi experiencia técnica al servicio de los objetivos de tu negocio. Desarrollo herramientas que resuelven cuellos de botella operativos y te permiten crecer con tranquilidad.",
+                srv1_title: "Software Empresarial a la Medida",
+                srv1_desc: "Desarrollo sistemas diseñados con precisión para tus operaciones internas: paneles de control, gestión de pedidos y plataformas que unifican a tu equipo en un solo lugar confiable.",
+                srv2_title: "Aplicaciones Web y Móviles",
+                srv2_desc: "Creo aplicaciones intuitivas y estables para teléfonos y navegadores, pensadas para que tus clientes o personal de campo operen de manera rápida y sin complicaciones técnicas.",
+                srv3_title: "Automatización y Control Operativo",
+                srv3_desc: "Sustituyo tareas manuales y archivos de Excel propensos a errores con soluciones automáticas para control de inventarios, almacenes y puntos de venta que optimizan tus tiempos.",
+                srv4_title: "Modernización y Soporte Continuo",
+                srv4_desc: "Si tu software actual se volvió lento u obsoleto, lo modernizo para que vuelva a ser rápido, seguro y fácil de mantener. Cuentas con un socio tecnológico de largo plazo.",
+                exp_tag: "Trayectoria",
+                exp_title: "Experiencia profesional comprobada",
+                exp_subtitle: "He diseñado e implementado soluciones en entornos de alta exigencia: desde grandes corporativos industriales y el sector financiero, hasta consultoría directa para PyMES en crecimiento.",
+                exp1_role: "Líder Técnico & Desarrollador",
+                exp1_desc: "Liderazgo técnico en la transformación digital de procesos logísticos y comerciales para uno de los grupos industriales más relevantes de la región. Diseñé y coordiné la migración de operaciones manuales tradicionales hacia plataformas centralizadas y modernas, optimizando el flujo de datos entre áreas y garantizando alta disponibilidad en servidores y la nube.",
+                tag_dt: "Transformación Digital",
+                tag_logistics: "Logística y Almacén",
+                tag_arch: "Arquitectura de Sistemas",
+                tag_lead: "Liderazgo de Equipos",
+                exp2_role: "Responsable de Desarrollo Móvil",
+                exp2_desc: "Gestión y desarrollo integral de aplicaciones financieras móviles utilizadas diariamente por miles de usuarios. Implementación bajo los más estrictos estándares de seguridad bancaria, cifrado y confiabilidad transaccional. Coordinación de ciclos de calidad, integración de servicios en tiempo real y optimización de bases de datos.",
+                tag_fintech: "Sector Fintech & Bancario",
+                tag_security: "Seguridad Transaccional",
+                tag_mobile: "Desarrollo Móvil de Alta Escala",
+                tag_quality: "Control de Calidad y Monitoreo",
+                exp3_role: "Consultor Independiente de Software",
+                exp3_company: "Proyectos Independientes & Empresas Comerciales",
+                exp3_desc: "Diseño e implementación de soluciones a la medida orientadas a resolver problemas operativos específicos: creación de una suite móvil para gestión de inventarios con escaneo digital y operación sin conexión que redujo drásticamente tiempos de conteo y eliminó errores de captura manual; e implementación de sistemas de Punto de Venta (POS) y comercio digital que impulsaron las ventas y el orden administrativo de clientes comerciales.",
+                tag_pos: "Puntos de Venta (POS)",
+                tag_inv: "Control de Inventarios",
+                tag_ecom: "Comercio Digital",
+                tag_roi: "Ahorro de Costos Operativos",
+                about_caption: "Ingeniero en Informática • Consultor",
+                about_tag: "Sobre mí",
+                about_title: "Un aliado tecnológico comprometido con tus resultados",
+                about_p1: "Soy Erick Ibáñez, Ingeniero en Informática con más de 6 años de experiencia diseñando y liderando soluciones de software en industrias exigentes como manufactura, logística y servicios financieros.",
+                about_p2: "Mi filosofía de trabajo es simple: el software solo es valioso si resuelve un problema real de tu negocio, ahorra tiempo a tu equipo o te ayuda a generar más ingresos. Me enfoco en entender a fondo tu operación antes de escribir una sola línea de código, ofreciéndote un trato directo, sin intermediarios y con comunicación clara en todo momento.",
+                about_p3: "Ya sea que necesites automatizar un proceso manual, construir una aplicación móvil para tus clientes o modernizar una plataforma existente, pongo a tu disposición mi experiencia corporativa con la agilidad y atención personalizada de un consultor dedicado.",
+                g1: "Trato directo con el especialista",
+                g2: "Comunicación clara sin tecnicismos",
+                g3: "Soluciones escalables y seguras",
+                g4: "Confidencialidad y seriedad",
+                g5: "Enfoque en ahorro de tiempo y costos",
+                g6: "Acompañamiento y soporte continuo",
+                contact_tag: "Contacto directo",
+                contact_title: "Hablemos sobre tu próximo proyecto",
+                contact_subtitle: "Cuéntame sobre las metas o dificultades operativas de tu empresa. Te responderé personalmente para analizar cómo podemos solucionarlo.",
+                contact_email_title: "Correo Electrónico",
+                contact_email_desc: "Canal principal para consultas y solicitudes de proyectos. Respuesta en menos de 24 horas.",
+                btn_send_mail: '<i class="fas fa-paper-plane"></i> Enviar correo',
+                btn_copy_mail: '<i class="fas fa-copy"></i> Copiar',
+                contact_linkedin_title: "LinkedIn",
+                contact_linkedin_desc: "Conéctate conmigo profesionalmente y revisa mi trayectoria y experiencia corporativa.",
+                btn_view_linkedin: '<i class="fas fa-arrow-up-right-from-square"></i> Ver perfil',
+                contact_github_title: "GitHub",
+                contact_github_desc: "Explora proyectos públicos, componentes y código representativo de mi trabajo.",
+                btn_view_github: '<i class="fas fa-code-branch"></i> Ver repositorio',
+                inquiry_title: "¿Tienes un proyecto en mente? Envíame un mensaje",
+                inquiry_subtitle: "Completa este breve formulario y abrirá tu cliente de correo listo con todos los datos organizados.",
+                form_name: "Tu Nombre",
+                form_company: "Empresa o Negocio (opcional)",
+                form_message: "¿En qué consiste tu necesidad o proyecto?",
+                btn_submit_inquiry: '<i class="fas fa-paper-plane"></i> Redactar mensaje de consulta',
+                footer_copy: "Consultoría y desarrollo de software profesional.",
+                toast_copied: "Correo copiado al portapapeles: erickibanezdev@gmail.com"
+            },
+            en: {
+                brand_subtitle: "Software & Consulting",
+                nav_services: "Services",
+                nav_experience: "Track Record",
+                nav_about: "About Me",
+                nav_contact: "Contact",
+                hero_status: "Available for consulting & new projects",
+                hero_location: "Monclova, Coahuila, Mexico • Remote & international collaboration",
+                hero_title: 'I build custom software to <span class="highlight">streamline and scale</span> your business.',
+                hero_lead: "I am Erick Ibáñez, a software engineer with over 6 years of experience building enterprise platforms, mobile applications, and process automation. I help you replace manual tasks, eliminate operational waste, and deploy dependable technology with direct, personal communication.",
+                hero_cta_primary: '<i class="fas fa-arrow-right"></i> Start a conversation',
+                hero_cta_secondary: '<i class="fas fa-briefcase"></i> View track record',
+                metric_1: "Proven professional experience",
+                metric_2: "Mission-critical & secure systems",
+                metric_3: "Direct partnership, no agency markup",
+                preview_title: "What I bring to your business",
+                preview_item1_title: "Focus on Return on Investment",
+                preview_item1_desc: "Systems engineered to save working hours, prevent human mistakes, and expand revenue.",
+                preview_item2_title: "Banking-grade security standards",
+                preview_item2_desc: "Proven background in finance and logistics with strict data protection and uptime.",
+                preview_item3_title: "Transparent & direct communication",
+                preview_item3_desc: "No confusing technical jargon: clear milestones, transparent estimates, and on-time deliverables.",
+                services_tag: "Solutions",
+                services_title: "Services engineered to generate real business value",
+                services_subtitle: "I put senior technical expertise at the service of your business goals. I build tools that eliminate operational bottlenecks and help your business scale safely.",
+                srv1_title: "Custom Enterprise Software",
+                srv1_desc: "I build software tailored specifically to your company's workflows: operational dashboards, order management, and platforms that synchronize your team in one reliable place.",
+                srv2_title: "Web & Mobile Applications",
+                srv2_desc: "I develop intuitive and responsive applications for smartphones and browsers, ensuring your customers and field team operate swiftly with zero technical friction.",
+                srv3_title: "Process Automation & Operations",
+                srv3_desc: "I replace error-prone spreadsheets and manual processes with automated tools for inventory control, warehousing, and Point of Sale that save valuable time.",
+                srv4_title: "System Modernization & Ongoing Support",
+                srv4_desc: "If your current software feels slow or obsolete, I modernize it to be fast, secure, and easy to maintain. You gain a long-term technology partner as your business grows.",
+                exp_tag: "Track Record",
+                exp_title: "Proven Professional Track Record",
+                exp_subtitle: "I have designed and delivered systems in high-stakes environments: from major industrial groups and financial institutions to direct consulting for growing businesses.",
+                exp1_role: "Technical Lead & Software Engineer",
+                exp1_desc: "Technical leadership in the digital transformation of logistics and commercial processes for a premier industrial group. Directed the migration of traditional manual operations into modern, centralized digital systems, streamlining data flow across business units and ensuring high availability on enterprise cloud infrastructure.",
+                tag_dt: "Digital Transformation",
+                tag_logistics: "Logistics & Warehousing",
+                tag_arch: "Systems Architecture",
+                tag_lead: "Team Leadership",
+                exp2_role: "Head of Mobile Development",
+                exp2_desc: "End-to-end management and development of mobile fintech applications used daily by thousands of cardholders. Built under strict banking security standards, encrypted transactions, and high availability. Led continuous quality assurance cycles and backend service integrations.",
+                tag_fintech: "Fintech & Banking",
+                tag_security: "Transactional Security",
+                tag_mobile: "Large-scale Mobile Apps",
+                tag_quality: "Quality Assurance & Monitoring",
+                exp3_role: "Independent Software Consultant",
+                exp3_company: "Independent Projects & Commercial Clients",
+                exp3_desc: "Architected and delivered tailored software for operational efficiency: built a mobile inventory management suite with digital scanning and offline capability that eliminated manual counting errors and cut audit times; deployed custom Point of Sale (POS) and e-commerce platforms that accelerated commercial sales.",
+                tag_pos: "Point of Sale (POS)",
+                tag_inv: "Inventory Control",
+                tag_ecom: "Digital Commerce",
+                tag_roi: "Operational Cost Reduction",
+                about_caption: "Computer Systems Engineer • Consultant",
+                about_tag: "About Me",
+                about_title: "A dedicated technology partner focused on your results",
+                about_p1: "I am Erick Ibáñez, a Computer Systems Engineer with over 6 years of experience architecting and leading software solutions in demanding sectors including manufacturing, logistics, and financial services.",
+                about_p2: "My working philosophy is straightforward: software is only valuable if it solves a real business headache, saves your team hours of manual effort, or drives revenue. I focus on understanding your operations thoroughly before proposing a solution, providing direct communication without intermediaries or confusing jargon.",
+                about_p3: "Whether you need to automate a manual workflow, launch a mobile application for your customers, or modernize an existing system, I bring enterprise rigor combined with the agility and personal dedication of an independent consultant.",
+                g1: "Direct partnership with a senior specialist",
+                g2: "Clear communication with no technical jargon",
+                g3: "Secure and scalable architecture",
+                g4: "Strict confidentiality and professional ethics",
+                g5: "Targeted to reduce operational waste & costs",
+                g6: "Continuous support and long-term commitment",
+                contact_tag: "Direct Contact",
+                contact_title: "Let's discuss your next project",
+                contact_subtitle: "Tell me about your business goals or current operational challenges. I will personally review your inquiry and suggest a practical path forward.",
+                contact_email_title: "Email Address",
+                contact_email_desc: "Primary channel for inquiries and project estimates. Guaranteed response within 24 business hours.",
+                btn_send_mail: '<i class="fas fa-paper-plane"></i> Send Email',
+                btn_copy_mail: '<i class="fas fa-copy"></i> Copy',
+                contact_linkedin_title: "LinkedIn",
+                contact_linkedin_desc: "Connect with me professionally and review my career trajectory and corporate experience.",
+                btn_view_linkedin: '<i class="fas fa-arrow-up-right-from-square"></i> View Profile',
+                contact_github_title: "GitHub",
+                contact_github_desc: "Explore public code repositories, components, and architecture samples.",
+                btn_view_github: '<i class="fas fa-code-branch"></i> View Repos',
+                inquiry_title: "Have a project in mind? Send me a message",
+                inquiry_subtitle: "Fill out this brief form and it will prepare a structured draft in your email client ready to send.",
+                form_name: "Your Name",
+                form_company: "Company or Business (optional)",
+                form_message: "What does your project or need consist of?",
+                btn_submit_inquiry: '<i class="fas fa-paper-plane"></i> Prepare Inquiry Message',
+                footer_copy: "Professional software development and consulting.",
+                toast_copied: "Email copied to clipboard: erickibanezdev@gmail.com"
+            }
+        };
+
+        let currentLang = 'es';
+
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLang = lang;
+            localStorage.setItem('erick_portfolio_lang', lang);
+
+            // Update active buttons
+            document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.documentElement.lang = lang;
+
+            // Update page title
+            if (lang === 'es') {
+                document.title = "Erick Ibáñez | Consultoría y Desarrollo de Software";
+            } else {
+                document.title = "Erick Ibáñez | Software Consulting & Engineering";
+            }
+
+            // Translate elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Translate inputs
+            if (lang === 'es') {
+                document.getElementById('inq-name').placeholder = "Ej. Carlos Martínez";
+                document.getElementById('inq-company').placeholder = "Ej. Distribuidora del Norte";
+                document.getElementById('inq-message').placeholder = "Ej. Necesitamos un sistema para digitalizar el control de almacén y pedidos de nuestros clientes...";
+            } else {
+                document.getElementById('inq-name').placeholder = "e.g. John Doe";
+                document.getElementById('inq-company').placeholder = "e.g. Acme Logistics";
+                document.getElementById('inq-message').placeholder = "e.g. We need a custom system to automate inventory control and customer orders...";
+            }
+        }
+
+        // Automatic Language & Location Detection
+        async function initLanguageAndLocation() {
+            const savedLang = localStorage.getItem('erick_portfolio_lang');
+            if (savedLang === 'es' || savedLang === 'en') {
+                setLanguage(savedLang);
+            } else {
+                // Fallback to browser language
+                const browserLocale = (navigator.language || navigator.userLanguage || '').toLowerCase();
+                if (browserLocale.startsWith('en')) {
+                    setLanguage('en');
+                } else {
+                    setLanguage('es');
+                }
+            }
+
+            // Non-blocking location detection to adapt language and location display
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 2000);
+                const res = await fetch('https://ipapi.co/json/', { signal: controller.signal });
+                clearTimeout(timeoutId);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.country_name) {
+                        // If user hasn't explicitly chosen a language, adapt based on country
+                        if (!savedLang && data.country_code) {
+                            const spanishCountries = ['MX', 'ES', 'CO', 'AR', 'PE', 'CL', 'EC', 'GT', 'CU', 'BO', 'DO', 'HN', 'PY', 'SV', 'NI', 'CR', 'PR', 'PA', 'UY'];
+                            if (!spanishCountries.includes(data.country_code)) {
+                                setLanguage('en');
+                            }
+                        }
+                        // Update location pill dynamically if location is available
+                        const locEl = document.getElementById('location-text');
+                        if (locEl) {
+                            if (currentLang === 'es') {
+                                locEl.textContent = `Monclova, Coahuila, México • Disponible para proyectos en ${data.country_name} y remotos`;
+                            } else {
+                                locEl.textContent = `Monclova, Mexico • Available for projects in ${data.country_name} & worldwide remotely`;
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                // Graceful fallback to static text
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('mobile-open');
+            if (menu.classList.contains('mobile-open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.remove('mobile-open');
+            if (icon) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // Theme Toggle
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
@@ -550,19 +1713,67 @@
                 body.classList.add('light-theme');
                 themeIcon.classList.remove('fa-sun');
                 themeIcon.classList.add('fa-moon');
+                localStorage.setItem('erick_theme', 'light');
             } else {
                 body.classList.remove('light-theme');
                 body.classList.add('dark-theme');
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
+                localStorage.setItem('erick_theme', 'dark');
             }
         }
 
+        function initTheme() {
+            const savedTheme = localStorage.getItem('erick_theme');
+            const themeIcon = document.getElementById('theme-icon');
+            if (savedTheme === 'light') {
+                document.body.classList.remove('dark-theme');
+                document.body.classList.add('light-theme');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        // Copy email to clipboard
+        function copyEmail() {
+            const email = "erickibanezdev@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                showToast(translations[currentLang].toast_copied);
+            }).catch(() => {
+                showToast("erickibanezdev@gmail.com");
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Inquiry Form Handler
+        function handleInquiry(e) {
+            e.preventDefault();
+            const name = document.getElementById('inq-name').value.trim();
+            const company = document.getElementById('inq-company').value.trim();
+            const message = document.getElementById('inq-message').value.trim();
+
+            const subject = encodeURIComponent(`Consulta de Software - ${name}${company ? ' (' + company + ')' : ''}`);
+            const body = encodeURIComponent(
+                `Hola Erick,\n\nMi nombre es: ${name}\nEmpresa: ${company || 'N/A'}\n\nDetalles del proyecto o necesidad:\n${message}\n\nEspero tu respuesta.\nSaludos.`
+            );
+
+            window.location.href = `mailto:erickibanezdev@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        // Smooth scroll for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
+                    e.preventDefault();
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
@@ -571,30 +1782,10 @@
             });
         });
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.service-card, .contact-card').forEach(el => {
-            observer.observe(el);
-        });
-
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            initLanguageAndLocation();
         });
     </script>
 </body>
